@@ -1,0 +1,56 @@
+Group All
+Group Lights 		(All)
+Group Weather 		(All)
+Group Alarm 		(All)
+
+/* Lights */
+/* mqtt data format on /home/light topic <device number><channel><status> */
+Switch Light_Outdoor_WallLight_Backdoor			"Wall Light (Back Door)" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:1,1,1],>[localbroker:/home/lightswitch:command:OFF:1,1,0], <[localbroker:/home/lightstatereply:state:REGEX(.*1,.*1,(.*))]"}
+//Switch Light_Outdoor_Backdoor_WallLight			"Wall Light (Back Door)" 		(Outdoor, Lights) {mqtt="<[localbroker:/home/lightstate:state:REGEX(.*1,.*1,(.*))]"}
+Switch Light_Outdoor_WallLight_Chili 			"Wall Light (Chili)" 			(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:1,2,1],>[localbroker:/home/lightswitch:command:OFF:1,2,0], <[localbroker:/home/lightstatereply:state:REGEX(.*1,.*2,(.*))]"}
+Switch Light_Outdoor_WallLight_Jackfruit 		"Wall Light (Jackfruit)" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:1,3,1],>[localbroker:/home/lightswitch:command:OFF:1,3,0], <[localbroker:/home/lightstatereply:state:REGEX(.*1,.*3,(.*))]"}
+
+Switch Light_Outdoor_Carporch_Chandelier		"Car Porch Chandelier" 			(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:2,1,1],>[localbroker:/home/lightswitch:command:OFF:2,1,0], <[localbroker:/home/lightstatereply:state:REGEX(.*2,.*1,(.*))]"}
+Switch Light_Outdoor_Carporch_WallLight 		"Car Porch Wall Light" 			(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:2,2,1],>[localbroker:/home/lightswitch:command:OFF:2,2,0], <[localbroker:/home/lightstatereply:state:REGEX(.*2,.*2,(.*))]"}
+Switch Light_Outdoor_Small_PostLight			"Small Post Light" 				(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:2,3,1],>[localbroker:/home/lightswitch:command:OFF:2,3,0], <[localbroker:/home/lightstatereply:state:REGEX(.*2,.*3,(.*))]"}
+
+Switch Light_Outdoor_Suspension_Light			"Suspension Light" 				(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:3,1,1],>[localbroker:/home/lightswitch:command:OFF:3,1,0], <[localbroker:/home/lightstatereply:state:REGEX(.*3,.*1,(.*))]"}
+Switch Light_Indoor_Dining_SpotLight			"Dining Room Spot Light" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:3,2,1],>[localbroker:/home/lightswitch:command:OFF:3,2,0], <[localbroker:/home/lightstatereply:state:REGEX(.*3,.*2,(.*))]"}
+Switch Light_Indoor_Dining_DownLight			"Dining Room Down Light" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:3,3,1],>[localbroker:/home/lightswitch:command:OFF:3,3,0], <[localbroker:/home/lightstatereply:state:REGEX(.*3,.*3,(.*))]"}
+
+/*
+Number Home_Temp "Temperature [%.1f Â°C]" <temperature> (Weather) {mqtt="<[localbroker:/home/temp:state:default]"}
+Number Home_WindSpeed "Wind Speed [%.1f m/s]" <wind> (Weather) {mqtt="<[localbroker:/home/wind:state:default]"}
+Number Home_WindDir "Wind Direction [%.1f Deg]" <wind> (Weather) {mqtt="<[localbroker:/home/winddir:state:default]"}
+Number Home_Pressure "Air Pressure [%.1f kPa]" <pressure> (Weather) {mqtt="<[localbroker:/home/pres:state:default]"}
+Number Home_Humidity "Relative Humidity [%.1f %%]" <humid> (Weather) {mqtt="<[localbroker:/home/humid:state:default]"}
+*/
+Number Home_Temp "Temperature [%.1f °C]" <temperature> (Weather) {weather="locationId=melaka, type=temperature, property=current"}
+Number Home_WindSpeed "Wind Speed [%.1f m/s]" <wind> (Weather) {weather="locationId=melaka, type=wind, property=speed"}
+Number Home_WindDir "Wind Direction [%.1f Deg]" <wind> (Weather) {weather="locationId=melaka, type=wind, property=degree"}
+Number Home_Pressure "Air Pressure [%.1f mbar]" <pressure> (Weather) {weather="locationId=melaka, type=atmosphere, property=pressure, unit=inches"}
+Number Home_Humidity "Relative Humidity [%.1f %%]" <humid> (Weather) {weather="locationId=melaka, type=atmosphere, property=humidity"}
+
+Contact Zone1 			"Zone 1" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*1,(.*))]"}
+Contact Zone2 			"Zone 2" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*2,(.*))]"}
+Contact Zone3 			"Zone 3" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*3,(.*))]"}
+Contact Zone4 			"Zone 4" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*4,(.*))]"}
+Contact Zone5 			"Zone 5" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*5,(.*))]"}
+Contact Zone6 			"Zone 6" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*6,(.*))]"}
+Contact Zone7 			"Zone 7" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*7,(.*))]"}
+Contact Zone8 			"Zone8" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*8,(.*))]"}
+Contact Zone9 			"Panic Button" <sensor> (Alarm) {mqtt="<[localbroker:/home/alarm:state:REGEX(.*9,(.*))]"}
+
+/* NTP binding demo item */
+//DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Asia/Singapore" }
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]"  <sun> {astro="planet=sun, type=rise, property=start"}
+DateTime Sunset_Time  "Sunset [%1$tH:%1$tM]"  <moon> {astro="planet=sun, type=set, property=start"}
+
+// add sunset event item
+Switch Sunset_Event   {astro="planet=sun, type=set, property=start"}
+
+// add sunrise event item
+Switch Sunrise_Event   {astro="planet=sun, type=rise, property=start"}
+
+// get light state string. used in rule during system startup
+String Get_Light_State "[%s]" { mqtt=">[localbroker:/home/lightstatereq:command:*:default]" }

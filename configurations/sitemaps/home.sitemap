@@ -1,0 +1,13 @@
+sitemap demo label="Main Menu"
+{
+	Frame label="Astro Information" {
+		Text item=Sunrise_Time
+		Text item=Sunset_Time
+	}
+	Frame label="My Home Automation"{
+		Group item=Lights label="Light Control" icon="light-on"
+		Group item=Weather label="Weather Information" icon="humid"
+		Group item=Alarm label="Alarm Status" icon="shield-2"	
+	}
+	
+}

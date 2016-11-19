@@ -1,0 +1,58 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+
+rule "Rule at system started - request light state"
+when
+	System started
+then
+	sendCommand (Get_Light_State, 1);
+    sendCommand (Get_Light_State, 2);
+    sendCommand (Get_Light_State, 3);
+end
+    
+
+rule "Rule at sunrise - set some lights to OFF"
+when
+    Item Sunrise_Event received update ON
+then
+	sendNotification("your@email.com", "Lights Off")
+    sendCommand(Light_Outdoor_WallLight_Backdoor, OFF)
+    sendCommand(Light_Outdoor_Carporch_Chandelier, OFF)
+    sendCommand(Light_Outdoor_Carporch_WallLight, OFF)
+    sendCommand(Light_Outdoor_Suspension_Light, OFF)
+end
+
+rule "Rule at sunset - set some lights to ON"
+when
+    Item Sunset_Event received update ON
+then
+	sendNotification("your@email.com", "Lights On")
+    sendCommand(Light_Outdoor_WallLight_Backdoor, ON)
+    sendCommand(Light_Outdoor_Carporch_Chandelier, ON)
+    sendCommand(Light_Outdoor_Suspension_Light, ON)
+end
+
+/*
+rule "LightOn"
+when   
+        Item Light_Outdoor_WallLight_Backdoor changed from OFF to ON
+then   
+        sendCommand(Light_Outdoor_Suspension_Light, ON)
+        sendCommand(Light_Indoor_Dining_DownLight, ON)
+    	sendCommand(Light_Indoor_Dining_SpotLight, ON)
+        sendNotification("your@email.com", "your text here")
+        //sendCommand (Get_Light_State, 1);
+        //sendCommand (Get_Light_State, 2);
+        //sendCommand (Get_Light_State, 3);
+end
+*/
+
+/*
+rule "LightOff"
+when   
+        Item Light_Outdoor_Backdoor_WallLight changed from ON to OFF
+then   
+        sendCommand(Light_Outdoor_Agnes_WallLight, OFF)
+end
+*/
