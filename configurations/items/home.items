@@ -5,25 +5,24 @@ Group Alarm 		(All)
 
 /* Lights */
 /* mqtt data format on /home/light topic <device number><channel><status> */
-Switch Light_Outdoor_WallLight_Backdoor			"Wall Light (Back Door)" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:1,1,1],>[localbroker:/home/lightswitch:command:OFF:1,1,0], <[localbroker:/home/lightstatereply:state:REGEX(.*1,.*1,(.*))]"}
-//Switch Light_Outdoor_Backdoor_WallLight			"Wall Light (Back Door)" 		(Outdoor, Lights) {mqtt="<[localbroker:/home/lightstate:state:REGEX(.*1,.*1,(.*))]"}
-Switch Light_Outdoor_WallLight_Chili 			"Wall Light (Chili)" 			(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:1,2,1],>[localbroker:/home/lightswitch:command:OFF:1,2,0], <[localbroker:/home/lightstatereply:state:REGEX(.*1,.*2,(.*))]"}
-Switch Light_Outdoor_WallLight_Jackfruit 		"Wall Light (Jackfruit)" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:1,3,1],>[localbroker:/home/lightswitch:command:OFF:1,3,0], <[localbroker:/home/lightstatereply:state:REGEX(.*1,.*3,(.*))]"}
+Switch Light_Outdoor_WallLight_Backdoor			"Wall Light (Back Door)" 		(Lights) {mqtt=">[localbroker:/home/light1/ctrl:command:ON:11],>[localbroker:/home/light1/ctrl:command:OFF:10], <[localbroker:/home/light1/stat:state:REGEX((.*).*1.*1)]"}
+Switch Light_Outdoor_WallLight_Chili 			"Wall Light (Chili)" 			(Lights) {mqtt=">[localbroker:/home/light1/ctrl:command:ON:21],>[localbroker:/home/light1/ctrl:command:OFF:20], <[localbroker:/home/light1/stat:state:REGEX(.*1(.*).*1)]"}
+Switch Light_Outdoor_WallLight_Jackfruit 		"Wall Light (Jackfruit)" 		(Lights) {mqtt=">[localbroker:/home/light1/ctrl:command:ON:31],>[localbroker:/home/light1/ctrl:command:OFF:30], <[localbroker:/home/light1/stat:state:REGEX(.*1.*1(.*))]"}
 
-Switch Light_Outdoor_Carporch_Chandelier		"Car Porch Chandelier" 			(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:2,1,1],>[localbroker:/home/lightswitch:command:OFF:2,1,0], <[localbroker:/home/lightstatereply:state:REGEX(.*2,.*1,(.*))]"}
-Switch Light_Outdoor_Carporch_WallLight 		"Car Porch Wall Light" 			(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:2,2,1],>[localbroker:/home/lightswitch:command:OFF:2,2,0], <[localbroker:/home/lightstatereply:state:REGEX(.*2,.*2,(.*))]"}
-Switch Light_Outdoor_Small_PostLight			"Small Post Light" 				(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:2,3,1],>[localbroker:/home/lightswitch:command:OFF:2,3,0], <[localbroker:/home/lightstatereply:state:REGEX(.*2,.*3,(.*))]"}
+Switch Light_Outdoor_Carporch_Chandelier		"Car Porch Chandelier" 			(Lights) {mqtt=">[localbroker:/home/light2/ctrl:command:ON:11],>[localbroker:/home/light2/ctrl:command:OFF:10], <[localbroker:/home/light2/stat:state:REGEX((.*).*1.*1)]"}
+Switch Light_Outdoor_Carporch_WallLight 		"Car Porch Wall Light" 			(Lights) {mqtt=">[localbroker:/home/light2/ctrl:command:ON:21],>[localbroker:/home/light2/ctrl:command:OFF:20], <[localbroker:/home/light2/stat:state:REGEX(.*1(.*).*1)]"}
+Switch Light_Outdoor_Small_PostLight			"Small Post Light" 				(Lights) {mqtt=">[localbroker:/home/light2/ctrl:command:ON:31],>[localbroker:/home/light2/ctrl:command:OFF:30], <[localbroker:/home/light2/stat:state:REGEX(.*1.*1(.*))]"}
 
-Switch Light_Outdoor_Suspension_Light			"Suspension Light" 				(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:3,1,1],>[localbroker:/home/lightswitch:command:OFF:3,1,0], <[localbroker:/home/lightstatereply:state:REGEX(.*3,.*1,(.*))]"}
-Switch Light_Indoor_Dining_SpotLight			"Dining Room Spot Light" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:3,2,1],>[localbroker:/home/lightswitch:command:OFF:3,2,0], <[localbroker:/home/lightstatereply:state:REGEX(.*3,.*2,(.*))]"}
-Switch Light_Indoor_Dining_DownLight			"Dining Room Down Light" 		(Lights) {mqtt=">[localbroker:/home/lightswitch:command:ON:3,3,1],>[localbroker:/home/lightswitch:command:OFF:3,3,0], <[localbroker:/home/lightstatereply:state:REGEX(.*3,.*3,(.*))]"}
+Switch Light_Outdoor_Suspension_Light			"Suspension Light" 				(Lights) {mqtt=">[localbroker:/home/light3/ctrl:command:ON:11],>[localbroker:/home/light3/ctrl:command:OFF:10], <[localbroker:/home/light3/stat:state:REGEX((.*).*1.*1)]"}
+Switch Light_Indoor_Dining_SpotLight			"Dining Room Spot Light" 		(Lights) {mqtt=">[localbroker:/home/light3/ctrl:command:ON:21],>[localbroker:/home/light3/ctrl:command:OFF:20], <[localbroker:/home/light3/stat:state:REGEX(.*1(.*).*1)]"}
+Switch Light_Indoor_Dining_DownLight			"Dining Room Down Light" 		(Lights) {mqtt=">[localbroker:/home/light3/ctrl:command:ON:31],>[localbroker:/home/light3/ctrl:command:OFF:30], <[localbroker:/home/light3/stat:state:REGEX(.*1.*1(.*))]"}
 
 /*
-Number Home_Temp "Temperature [%.1f Â°C]" <temperature> (Weather) {mqtt="<[localbroker:/home/temp:state:default]"}
-Number Home_WindSpeed "Wind Speed [%.1f m/s]" <wind> (Weather) {mqtt="<[localbroker:/home/wind:state:default]"}
-Number Home_WindDir "Wind Direction [%.1f Deg]" <wind> (Weather) {mqtt="<[localbroker:/home/winddir:state:default]"}
-Number Home_Pressure "Air Pressure [%.1f kPa]" <pressure> (Weather) {mqtt="<[localbroker:/home/pres:state:default]"}
-Number Home_Humidity "Relative Humidity [%.1f %%]" <humid> (Weather) {mqtt="<[localbroker:/home/humid:state:default]"}
+Number Home_Temp "Temperature [%.1f Â°C]" <temperature> (Weather) {mqtt="<[localbroker:/home/sensor/temp:state:default]"}
+Number Home_WindSpeed "Wind Speed [%.1f m/s]" <wind> (Weather) {mqtt="<[localbroker:/home/sensor/wind:state:default]"}
+Number Home_WindDir "Wind Direction [%.1f Deg]" <wind> (Weather) {mqtt="<[localbroker:/home/sensor/winddir:state:default]"}
+Number Home_Pressure "Air Pressure [%.1f kPa]" <pressure> (Weather) {mqtt="<[localbroker:/home/sensor/pres:state:default]"}
+Number Home_Humidity "Relative Humidity [%.1f %%]" <humid> (Weather) {mqtt="<[localbroker:/home/sensor/humid:state:default]"}
 */
 Number Home_Temp "Temperature [%.1f °C]" <temperature> (Weather) {weather="locationId=melaka, type=temperature, property=current"}
 Number Home_WindSpeed "Wind Speed [%.1f m/s]" <wind> (Weather) {weather="locationId=melaka, type=wind, property=speed"}
